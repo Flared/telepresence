@@ -226,7 +226,7 @@ def serviceCIDR(runner: Runner) -> List[str]:
     """
     serviceCIDR = cluster_serviceCIDR(runner)
     if not serviceCIDR:
-        return guess_serviceCIDR
+        return guess_serviceCIDR(runner)
     return serviceCIDR
 
 
