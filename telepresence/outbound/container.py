@@ -111,6 +111,7 @@ def run_docker_command(
     to_pod: List[int],
     from_pod: List[int],
     container_to_host: PortMapping,
+    hosts_or_ips: List[str],
     remote_env: Dict[str, str],
     ssh: SSH,
     mount_dir: Optional[str],
@@ -144,7 +145,7 @@ def run_docker_command(
     # Start the network (sshuttle) container:
     name = random_name()
     config = {
-        "cidrs": get_proxy_cidrs(runner, remote_info),
+        "cidrs": get_proxy_cidrs(runner, remote_info, hosts_or_ips),
         "expose_ports": list(expose.local_to_remote()),
         "to_pod": to_pod,
         "from_pod": from_pod,

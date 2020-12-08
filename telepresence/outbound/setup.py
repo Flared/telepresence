@@ -117,11 +117,6 @@ def setup_vpn(runner: Runner, args: Namespace) -> LaunchType:
 
 def setup_container(runner: Runner, args: Namespace) -> LaunchType:
     runner.require_docker()
-    if args.also_proxy:
-        runner.show(
-            "Note: --also-proxy is no longer required with --docker-run. "
-            "The container method sends all network traffic to the cluster."
-        )
 
     # Check for non-local docker
     local_docker_message = (
@@ -162,6 +157,7 @@ def setup_container(runner: Runner, args: Namespace) -> LaunchType:
             args.to_pod,
             args.from_pod,
             args.container_to_host,
+            args.also_proxy,
             env,
             ssh,
             mount_dir,
